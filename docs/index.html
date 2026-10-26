@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEO：タイトルと説明文は「地域名＋ケータリング＋強み」を必ず入れる -->
+<title>DICE KITCHEN | 藤沢・湘南の出張ケータリング＆バー</title>
+<meta name="description" content="藤沢のBAR「THREE DICE」がプロデュースするケータリングサービス。【要入力：強みを1文で】。企業パーティー・ウェディング・ホームパーティーに対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110f; --bg2:#1d1916; --card:#25201c; --text:#f2ece4; --muted:#b5aa9c;
+    --gold:#c9a45c; --gold2:#e2c48a; --line:#3a332c; --todo:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP",sans-serif;line-height:1.8}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  section{padding:88px 0;border-bottom:1px solid var(--line)}
+  section:nth-of-type(even){background:var(--bg2)}
+  .eyebrow{font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+  h2{font-family:"Noto Serif JP",serif;font-size:clamp(24px,4vw,34px);margin:6px 0 32px}
+  h3{font-size:18px;margin-bottom:8px}
+  p.lead{color:var(--muted);max-width:720px;margin-bottom:32px}
+
+  /* 穴埋め箇所：完成時はこのクラスを外す */
+  .todo{outline:1px dashed var(--todo);color:var(--todo);padding:0 4px;border-radius:3px}
+  .ph{background:repeating-linear-gradient(45deg,#2b2520,#2b2520 10px,#302922 10px,#302922 20px);
+      border:1px dashed var(--line);color:var(--muted);display:flex;align-items:center;justify-content:center;
+      text-align:center;font-size:13px;aspect-ratio:4/3;border-radius:8px;padding:8px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:10;background:rgba(20,17,15,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:"Noto Serif JP",serif;font-weight:700;letter-spacing:.08em}
+  nav{display:flex;gap:20px;font-size:14px}
+  nav a{text-decoration:none;color:var(--muted)}
+  nav a:hover{color:var(--gold2)}
+  @media(max-width:820px){nav{display:none}}
+
+  .btn{display:inline-block;padding:14px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px}
+  .btn-gold{background:var(--gold);color:#1a1510}
+  .btn-line{background:#06c755;color:#fff}
+  .btn-outline{border:1px solid var(--gold);color:var(--gold2)}
+
+  /* hero */
+  .hero{min-height:88vh;display:flex;align-items:center;padding:80px 0;
+        background:linear-gradient(rgba(20,17,15,.55),rgba(20,17,15,.88)),url("images/hero-spread.jpg") center/cover,#2b2520}
+  .photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block}
+  .hero h1{font-family:"Noto Serif JP",serif;font-size:clamp(30px,6vw,56px);line-height:1.4;margin:12px 0 20px}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .hero small{display:block;margin-top:16px;color:var(--muted)}
+
+  .grid{display:grid;gap:20px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+  .card .num{font-family:"Noto Serif JP",serif;color:var(--gold);font-size:28px}
+  .price{font-size:26px;color:var(--gold2);font-weight:700;margin:8px 0}
+  .card ul{padding-left:1.2em;color:var(--muted);font-size:14px}
+  .card.featured{border-color:var(--gold)}
+  .badge{display:inline-block;font-size:12px;font-weight:700;background:var(--gold);color:#1a1510;padding:2px 12px;border-radius:999px;margin-bottom:10px}
+  .price small{font-size:14px;color:var(--muted);font-weight:400}
+
+  .flow{counter-reset:s;list-style:none}
+  .flow li{counter-increment:s;position:relative;padding:0 0 24px 56px}
+  .flow li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;
+                   background:var(--gold);color:#1a1510;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:500}
+  details p{color:var(--muted);margin-top:10px}
+
+  form{display:grid;gap:16px;max-width:680px}
+  label{font-size:14px;color:var(--muted)}
+  input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;margin-top:4px}
+
+  footer{padding:48px 0;color:var(--muted);font-size:13px}
+  .sns{display:flex;gap:16px;margin:12px 0}
+
+  /* スマホ固定CTA */
+  .fixed-cta{display:none}
+  @media(max-width:820px){
+    .fixed-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20}
+    .fixed-cta a{flex:1;text-align:center;padding:14px;font-weight:700;text-decoration:none}
+    body{padding-bottom:52px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 01. HEADER ============ -->
+<header>
+  <div class="wrap">
+    <div class="logo">DICE KITCHEN</div>
+    <nav>
+      <a href="#about">コンセプト</a><a href="#scene">利用シーン</a><a href="#plan">プラン</a>
+      <a href="#gallery">ギャラリー</a><a href="#flow">ご利用の流れ</a><a href="#faq">FAQ</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ 02. HERO（ファーストビュー）============
+     目的：3秒で「何屋か・どこか・誰向けか」を伝え、問い合わせへ誘導 -->
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Catering &amp; Bar from THREE DICE</p>
+    <h1>BARの一杯を、<br>あなたのパーティーへ。</h1>
+    <p class="lead">藤沢で18年以上続くBAR「THREE DICE」が届ける、料理とお酒のケータリング。<br>
+      藤沢・湘南エリアを中心に、10〜100名様まで対応します。<br>
+      <span style="font-size:14px">※ 100名様以上もお気軽にご相談ください。</span></p>
+    <div class="cta">
+      <a class="btn btn-gold" href="#contact">無料でお見積もり</a>
+      <a class="btn btn-line" href="#contact">LINEで相談する</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 03. ABOUT / コンセプト ============
+     THREE DICE姉妹店であることを「信頼の根拠」として使う -->
+<section id="about">
+  <div class="wrap grid g2" style="align-items:center">
+    <div>
+      <p class="eyebrow">Concept</p>
+      <h2>藤沢で18年以上。<br>BAR「THREE DICE」から生まれた<br>ケータリング</h2>
+      <p>「THREE DICEの料理とお酒を、うちのパーティーでも出してほしい。」<br>
+        常連のお客様からいただいたその一言が、DICE KITCHENの始まりです。<br>
+        カウンター越しにお届けしてきた一杯と一皿を、今度はあなたの会場へお持ちします。</p>
+      <p style="margin-top:12px">料理は季節に合わせてご用意し、湘南ならではのしらすを使った一品もお楽しみいただけます。
+        「この料理を出したい」というご希望があれば、ご予算の範囲でできる限りお応えします。</p>
+      <p style="margin-top:12px">東京のオフィスで120名様規模の企業ケータリングを担当したほか、ケバブやドリンクの屋台出店も経験してきました。
+        少人数のホームパーティーから大人数のイベントまで、安心してお任せください。</p>
+    </div>
+    <img class="photo" src="images/tdice-interior.jpg" alt="BAR THREE DICEの店内" loading="lazy">
+  </div>
+</section>
+
+<!-- ============ 04. 選ばれる理由 ============ -->
+<section id="reason">
+  <div class="wrap">
+    <p class="eyebrow">Reason</p>
+    <h2>選ばれる3つの理由</h2>
+    <div class="grid g3">
+      <div class="card"><div class="num">01</div><h3>気取らないBARの、料理とお酒</h3><p>藤沢で18年以上愛されてきたフランクなBAR「THREE DICE」の料理とお酒を、そのまま会場へ。会場では気軽に楽しめるカクテルもお作りします。「このお酒を用意してほしい」というご希望にも、幅広く対応します。</p></div>
+      <div class="card"><div class="num">02</div><h3>季節と湘南の味、ご希望の一皿も</h3><p>季節に合わせた料理に、湘南ならではのしらすを使った一品を。「この料理を出したい」というご希望にも、ご予算の範囲でお応えします。</p></div>
+      <div class="card"><div class="num">03</div><h3>10名から120名規模まで</h3><p>東京のオフィスで120名様規模の企業ケータリングを担当。ケバブやドリンクの屋台出店で培った段取り力で、大人数の会もスムーズに進めます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05. 利用シーン ============
+     SEO的にもシーン別キーワードを拾う場所 -->
+<section id="scene">
+  <div class="wrap">
+    <p class="eyebrow">Scene</p>
+    <h2>こんなシーンで</h2>
+    <div class="grid g4">
+      <div class="card"><img class="photo" src="images/office-buffet.jpg" alt="企業パーティーのビュッフェ" loading="lazy" style="margin-bottom:12px"><h3>企業パーティー・懇親会</h3><p>歓送迎会や周年パーティー、社内の懇親会に。オフィスでの120名様規模の実績もあり、大人数でも安心してお任せいただけます。</p></div>
+      <div class="card"><img class="photo" src="images/rollcake.jpg" alt="2色のロールケーキ" loading="lazy" style="margin-bottom:12px"><h3>ウェディング・二次会</h3><p>堅苦しくない、BARらしい和やかな雰囲気で。ご希望の料理やお酒で、おふたりらしいパーティーをつくります。</p></div>
+      <div class="card"><img class="photo" src="images/pickles-salad.jpg" alt="夏野菜のピクルスと春雨サラダ" loading="lazy" style="margin-bottom:12px"><h3>ホームパーティー</h3><p>誕生日や記念日、仲間との集まりに。10名様から、ご自宅がそのままBARのような空間になります。</p></div>
+      <div class="card"><img class="photo" src="images/onigiri-table.jpg" alt="鶏のからあげとおにぎり" loading="lazy" style="margin-bottom:12px"><h3>イベント・撮影・展示会</h3><p>マルシェや展示会、撮影現場の差し入れにも。屋台出店の経験を活かして、屋外や大人数の会場にも対応します。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06. プラン・料金 ============
+     料金の目安を出すと問い合わせ率が上がる（「〜」表記でOK） -->
+<section id="plan">
+  <div class="wrap">
+    <p class="eyebrow">Plan</p>
+    <h2>プラン・料金</h2>
+    <p class="lead">どちらのプランも<strong style="color:var(--gold2)">設営費・スタッフ代込み</strong>の料金です。追加でかかるのは交通費のみ。</p>
+    <div class="grid g2">
+      <div class="card">
+        <span class="badge">設営・スタッフ代込み</span>
+        <h3>フードプラン</h3>
+        <!-- 料金は設営費・スタッフ代込みの金額に改定予定 -->
+        <div class="price">¥3,000<small>〜 / 名</small> <span class="todo">（仮）</span></div>
+        <ul>
+          <li>季節の料理 8品〜</li>
+          <li>湘南のしらすを使った一品も</li>
+          <li>ご予算内でリクエスト料理に対応</li>
+          <li>設営・提供・片付けまでお任せ</li>
+        </ul>
+      </div>
+      <div class="card featured">
+        <span class="badge">おすすめ ／ 設営・スタッフ代込み</span>
+        <h3>フード＋ドリンクプラン</h3>
+        <div class="price">¥4,500<small>〜 / 名</small> <span class="todo">（仮）</span></div>
+        <ul>
+          <li>フードプランの内容すべて</li>
+          <li>飲み放題 2時間〜（延長はご相談ください）</li>
+          <li>アルコール：ビール・緑茶ハイ・ウーロンハイ・ハイボール</li>
+          <li>ソフトドリンク：緑茶・烏龍茶・オレンジジュース・アイスコーヒー</li>
+          <li>ご希望で気軽なカクテルもお作りします</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px;font-size:14px;color:var(--muted)">
+      <ul>
+        <li>ご利用は10名様から承ります（100名様以上もご相談ください）</li>
+        <li>交通費は別途いただきます（お見積もり時にご案内します）</li>
+        <li>上記以外のお酒のご用意もご相談ください</li>
+        <li>キャンセル料：7日前まで無料／6〜3日前 30%／2日前〜前日 50%／当日 100%</li>
+        <li>人数変更は3日前まで無料で承ります</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:32px">メニュー例</h3>
+    <div class="grid g4" style="margin-top:12px">
+      <img class="photo" src="images/karaage-onigiri.jpg" alt="鶏のからあげ みぞれ和えと梅昆布青じそおにぎり" loading="lazy"><img class="photo" src="images/pickles-salad.jpg" alt="夏野菜のピクルスと彩り野菜の春雨サラダ" loading="lazy"><img class="photo" src="images/dessert.jpg" alt="コーヒーゼリー" loading="lazy"><img class="photo" src="images/salad-dessert.jpg" alt="サラダとデザートの盛り付け" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07. ギャラリー / Instagram ============
+     SNS集客の受け皿。後でInstagram埋め込みに差し替え -->
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">Gallery</p>
+    <h2>これまでの実績</h2>
+    <div class="grid g3">
+      <img class="photo" src="images/hero-spread.jpg" alt="ビュッフェの盛り付け" loading="lazy"><img class="photo" src="images/office-buffet.jpg" alt="オフィスでのケータリング" loading="lazy"><img class="photo" src="images/onigiri-table.jpg" alt="からあげとおにぎりの盛り付け" loading="lazy">
+      <img class="photo" src="images/rollcake.jpg" alt="ロールケーキ" loading="lazy"><img class="photo" src="images/karaage-onigiri.jpg" alt="からあげとおにぎり" loading="lazy"><img class="photo" src="images/salad-dessert.jpg" alt="サラダとデザート" loading="lazy">
+    </div>
+    <p style="margin-top:24px;text-align:center"><a class="btn btn-outline" href="#">DICE KITCHENのInstagramでもっと見る <span class="todo">【URL】</span></a></p>
+  </div>
+</section>
+
+<!-- ============ 08. お客様の声 ============ -->
+<section id="voice">
+  <div class="wrap">
+    <p class="eyebrow">Voice</p>
+    <h2>お客様の声</h2>
+    <div class="grid g3">
+      <div class="card"><p class="todo">「【感想】」</p><p style="color:var(--muted);font-size:13px;margin-top:8px">— 【利用シーン・人数・属性】</p></div>
+      <div class="card"><p class="todo">「【感想】」</p><p style="color:var(--muted);font-size:13px;margin-top:8px">— 【利用シーン・人数・属性】</p></div>
+      <div class="card"><p class="todo">「【感想】」</p><p style="color:var(--muted);font-size:13px;margin-top:8px">— 【利用シーン・人数・属性】</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09. ご利用の流れ ============ -->
+<section id="flow">
+  <div class="wrap">
+    <p class="eyebrow">Flow</p>
+    <h2>ご利用の流れ</h2>
+    <ol class="flow">
+      <li><h3>お問い合わせ</h3><p>フォーム・LINE・お電話からお気軽にどうぞ。原則として開催日の2週間前までにご連絡ください（お急ぎの場合もご相談ください）。</p></li>
+      <li><h3>ヒアリング・お見積もり</h3><p>日時・人数・会場・ご予算・ご希望の料理やお酒・アレルギーの有無などを伺い、お見積もりをお出しします。屋外の場合は電源・水道・テントの有無も確認します。</p></li>
+      <li><h3>ご予約確定・メニュー決定</h3><p>内容にご納得いただけたらご予約確定です。メニューを決め、人数は3日前まで無料で変更いただけます。</p></li>
+      <li><h3>当日：設営・提供</h3><p>準備に余裕をもつため、原則として開始の2時間前に会場へ伺い、設営します（会場のご都合に合わせてご相談も可能です）。お料理とドリンクの提供はスタッフにお任せください。</p></li>
+      <li><h3>片付け・お支払い</h3><p>終了後の片付けまでこちらで行います。紙皿などの使い捨て食器を使うので、洗い物の手間もありません。お支払いは、個人のお客様は当日または事前のお振込みで、法人様は請求書による後日のお振込みにも対応しています。</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 10. 対応エリア ============
+     地域名を列挙＝ローカルSEO対策 -->
+<section id="area">
+  <div class="wrap">
+    <p class="eyebrow">Area</p>
+    <h2>対応エリア</h2>
+    <p class="lead">藤沢を中心に、湘南・横浜エリアへお伺いします。</p>
+    <div class="grid g3">
+      <div class="card featured"><h3>メインエリア</h3><p>藤沢市・茅ヶ崎市・鎌倉市・寒川町</p></div>
+      <div class="card"><h3>近隣エリア</h3><p>横浜市・平塚市・大和市・逗子市・葉山町・綾瀬市</p></div>
+      <div class="card"><h3>その他のエリア</h3><p>東京都内・その他の神奈川県内もご相談ください。東京都内のオフィスでの実績もあります。</p></div>
+    </div>
+    <p style="margin-top:20px;color:var(--muted);font-size:14px">※ 交通費はエリアや会場によって異なります。お見積もりの際にご案内します。</p>
+  </div>
+</section>
+
+<!-- ============ 11. FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>よくあるご質問</h2>
+    <details><summary>何名から依頼できますか？</summary><p>10名様から承ります。100名様以上の場合もお気軽にご相談ください（東京のオフィスで120名様規模の実績があります）。</p></details>
+    <details><summary>何日前までに予約が必要ですか？</summary><p>原則として2週間前までにご予約ください。お急ぎの場合も対応できますので、お気軽にご相談ください。</p></details>
+    <details><summary>料金には何が含まれていますか？</summary><p>料理（飲み放題プランはドリンクも）に加えて、設営・提供・片付け・スタッフ代がすべて含まれています。別途いただくのは交通費のみです。</p></details>
+    <details><summary>食べたい料理をリクエストできますか？</summary><p>はい。ご予算の範囲で、できる限りご希望にお応えします。湘南のしらすを使った料理も人気です。</p></details>
+    <details><summary>飲み放題にはどんなお酒がありますか？</summary><p>ビール・緑茶ハイ・ウーロンハイ・ハイボールと、ソフトドリンク（緑茶・烏龍茶・オレンジジュース・アイスコーヒー）をご用意します。ご希望で気軽なカクテルもお作りします。時間は2時間〜で、延長もご相談いただけます。</p></details>
+    <details><summary>上記以外のお酒も用意してもらえますか？</summary><p>はい、ご希望のお酒があればご相談ください。お酒のお持ち込みも基本的に可能です。</p></details>
+    <details><summary>アレルギーや食事制限に対応できますか？</summary><p>はい。事前にお知らせいただければ対応いたします。ご予約の際にお伝えください。</p></details>
+    <details><summary>屋外や撮影現場でも対応できますか？</summary><p>はい、対応可能です。マルシェなどの屋外イベントや、撮影現場への差し入れもお任せください。<br>※ 電源・水道・テントは会場側でのご用意をお願いしています。ご用意がない場合、雨天時の対応ができませんので、事前にご相談ください。</p></details>
+    <details><summary>食器・テーブルの貸し出しはありますか？</summary><p>お皿やカップは基本的に紙皿などの使い捨てのものをこちらでご用意します。洗い物や返却の手間はかかりません。テーブルは会場のものをお借りします。</p></details>
+    <details><summary>交通費はいくらかかりますか？</summary><p>エリアや会場によって異なりますので、お見積もりの際にご案内します。藤沢市・茅ヶ崎市・鎌倉市・寒川町がメインエリアです。</p></details>
+    <details><summary>キャンセルや人数変更はできますか？</summary><p>人数変更は3日前まで無料で承ります。キャンセル料は、7日前まで無料／6〜3日前 30%／2日前〜前日 50%／当日 100%です。</p></details>
+    <details><summary>支払い方法・請求書払いは？</summary><p>個人のお客様は、当日のお支払いまたは事前のお振込みをお願いしています。法人様は、請求書による後日のお振込みにも対応しています。</p></details>
+  </div>
+</section>
+
+<!-- ============ 12. 姉妹店 THREE DICE 紹介 ============
+     BAR→ケータリング、ケータリング→BARの相互送客 -->
+<section id="threedice">
+  <div class="wrap grid g2" style="align-items:center">
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+      <img class="photo" src="images/tdice-interior2.jpg" alt="THREE DICEのテーブル席" loading="lazy" style="grid-column:1/-1">
+      <img class="photo" src="images/tdice-cake.jpg" alt="メッセージ付きケーキプレート" loading="lazy">
+      <img class="photo" src="images/tdice-shots.jpg" alt="ショットで乾杯" loading="lazy">
+    </div>
+    <div>
+      <p class="eyebrow">Our Bar</p>
+      <h2>BAR THREE DICE</h2>
+      <p>藤沢で18年以上、地元の皆さまに愛されてきたBARです。気取らずフランクに、一人でも仲間とでも気軽に立ち寄れるお店です。カウンターでゆっくりお酒を楽しむのはもちろん、ご飯だけのご利用も大歓迎。ダーツやスポーツ観戦もお楽しみいただけます。DICE KITCHENの料理とお酒は、すべてこのカウンターから生まれました。<br>
+        ケータリングでDICE KITCHENを気に入っていただけたら、ぜひお店にも遊びに来てください。</p>
+      <p style="margin-top:12px"><strong style="color:var(--gold2)">人気メニュー：</strong>No.1 スリーダイス特製ジャークチキン／No.2 とろ～りたまごのチーズインオムライス</p>
+      <p style="margin-top:8px;color:var(--muted);font-size:14px">誕生日や記念日には、メッセージ付きのケーキプレートもご用意できます。</p>
+      <p style="color:var(--muted);margin-top:12px;font-size:14px">
+        住所：〒251-0023 神奈川県藤沢市鵠沼花沢町1-4 太陽第12ビル 1階<br>
+        営業時間：18:00〜翌5:00（定休日：日曜日）<br>
+        アクセス：藤沢駅南口から徒歩2分
+      </p>
+      <p style="margin-top:16px;display:flex;flex-wrap:wrap;gap:12px">
+        <a class="btn btn-outline" href="#">THREE DICEのInstagram <span class="todo">【URL】</span></a>
+        <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E8%97%A4%E6%B2%A2%E5%B8%82%E9%B5%A0%E6%B2%BC%E8%8A%B1%E6%B2%A2%E7%94%BA1-4" target="_blank" rel="noopener">Googleマップで見る</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. お問い合わせ ============
+     項目は最小限に（多いと離脱）。送信先は後でフォームサービスと接続 -->
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>お見積もり・ご相談（無料）</h2>
+    <p class="lead">LINEなら写真や会場情報も送れて手軽です。<span class="todo">【返信目安：24時間以内 など】</span></p>
+    <p style="margin-bottom:32px"><a class="btn btn-line" href="#">LINE公式アカウントで相談 <span class="todo">【URL】</span></a></p>
+    <p style="margin:-16px 0 32px">お電話でのご相談：<span class="todo">【電話番号】</span></p>
+    <form onsubmit="event.preventDefault();alert('送信先は未設定です')">
+      <label>お名前<input required></label>
+      <label>メールアドレス<input type="email" required></label>
+      <label>電話番号<input type="tel"></label>
+      <label>ご利用シーン
+        <select><option>企業パーティー</option><option>ウェディング・二次会</option><option>ホームパーティー</option><option>イベント</option><option>その他</option></select>
+      </label>
+      <label>開催日（予定）<input type="date"></label>
+      <label>人数（目安）<input type="number" min="1"></label>
+      <label>ご予算・ご要望<textarea rows="5"></textarea></label>
+      <button class="btn btn-gold" type="submit" style="border:0;cursor:pointer">送信する</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 14. FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="logo">DICE KITCHEN</div>
+    <div class="sns"><a href="#">Instagram（DICE KITCHEN）</a><a href="#">Instagram（THREE DICE）</a><a href="#">LINE</a><a href="#">TikTok</a><a href="#">Google マップ</a></div>
+    <p>運営：BAR THREE DICE ／ <span class="todo">【電話番号・メール・飲食店営業許可などの表記】</span></p>
+    <p style="margin-top:8px">© DICE KITCHEN</p>
+  </div>
+</footer>
+
+<!-- スマホ固定ボタン -->
+<div class="fixed-cta">
+  <a href="#contact" style="background:var(--gold);color:#1a1510">見積もり</a>
+  <a href="#contact" style="background:#06c755;color:#fff">LINE相談</a>
+</div>
+
+</body>
+</html>

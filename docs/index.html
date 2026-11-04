@@ -77,6 +77,8 @@
 
   form{display:grid;gap:16px;max-width:680px}
   label{font-size:14px;color:var(--muted)}
+  input[type=date]{color-scheme:dark;cursor:pointer}
+  input[type=date]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.9}
   input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;margin-top:4px}
 
   footer{padding:48px 0;color:var(--muted);font-size:13px}
@@ -324,7 +326,7 @@
 </section>
 
 <!-- ============ 13. お問い合わせ ============
-     項目は最小限に（多いと離脱）。送信先は後でフォームサービスと接続 -->
+     項目は最小限に（多いと離脱）。送信先はGoogleフォーム（name="entry.〜" がフォームの各項目） -->
 <section id="contact">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
@@ -332,21 +334,55 @@
     <p class="lead">LINEなら写真や会場情報も送れて手軽です。<span class="todo">【返信目安：24時間以内 など】</span></p>
     <p style="margin-bottom:32px"><a class="btn btn-line" href="#">LINE公式アカウントで相談 <span class="todo">【URL】</span></a></p>
     <p style="margin:-16px 0 32px">お電話でのご相談：<span class="todo">【電話番号】</span></p>
-    <form onsubmit="event.preventDefault();alert('送信先は未設定です')">
-      <label>お名前<input required></label>
-      <label>メールアドレス<input type="email" required></label>
-      <label>電話番号<input type="tel"></label>
+    <form id="contact-form">
+      <label>お名前<input name="entry.962353039" required></label>
+      <label>メールアドレス<input name="entry.675753773" type="email" required></label>
+      <label>電話番号<input name="entry.1521351244" type="tel"></label>
       <label>ご利用シーン
-        <select><option>企業パーティー</option><option>ウェディング・二次会</option><option>ホームパーティー</option><option>イベント</option><option>その他</option></select>
+        <select name="entry.74582227"><option value="">選択してください</option><option>企業パーティー</option><option>ウェディング・二次会</option><option>ホームパーティー</option><option>イベント</option><option>その他</option></select>
       </label>
       <label>ご希望のプラン
-        <select><option>フードプラン（¥4,500〜/名）</option><option>フード＋ドリンクプラン（¥6,500〜/名）</option><option>相談して決めたい</option></select>
+        <select name="entry.1295041672"><option value="">選択してください</option><option>フードプラン（¥4,500〜/名）</option><option>フード＋ドリンクプラン（¥6,500〜/名）</option><option>相談して決めたい</option></select>
       </label>
-      <label>開催日（予定）<input type="date"></label>
-      <label>人数（目安）<input type="number" min="1"></label>
-      <label>ご予算・ご要望<textarea rows="5"></textarea></label>
+      <label>開催日（予定）<input id="event-date" type="date"></label>
+      <label>人数（目安）<input name="entry.231047137" type="number" min="1"></label>
+      <label>ご予算・ご要望<textarea name="entry.918396647" rows="5"></textarea></label>
       <button class="btn btn-gold" type="submit" style="border:0;cursor:pointer">送信する</button>
     </form>
+    <p id="contact-thanks" hidden style="max-width:680px;padding:24px;border:1px solid var(--gold);border-radius:8px">
+      お問い合わせありがとうございます。<br>ご入力いただいたメールアドレスに確認メールをお送りしました。内容を確認のうえ、担当よりあらためてご連絡いたします。
+    </p>
+    <script>
+      // 送信先：Googleフォーム（google-form/フォーム作成.gs で作成）。送信後の完了メールはGoogle側で送る
+      // 開催日：欄のどこを押してもカレンダーが開くようにする（PCでは小さなアイコンを押さないと開かないため）
+      document.getElementById('event-date').addEventListener('click', function () {
+        if (this.showPicker) { try { this.showPicker(); } catch (err) {} }
+      });
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var form = this, data = new FormData(form);
+        var date = document.getElementById('event-date').value; // YYYY-MM-DD
+        if (date) {
+          var d = date.split('-');
+          data.append('entry.1006544593_year', d[0]);
+          data.append('entry.1006544593_month', String(Number(d[1])));
+          data.append('entry.1006544593_day', String(Number(d[2])));
+        }
+        var button = form.querySelector('button');
+        button.disabled = true;
+        button.textContent = '送信中…';
+        fetch('https://docs.google.com/forms/d/e/1FAIpQLSdrfUf-xvtgXuRBV96hP3qaN5zwdk7yJ2FnpzUMZDEpU2H5og/formResponse', {
+          method: 'POST', mode: 'no-cors', body: data
+        }).then(function () {
+          form.style.display = 'none'; // hidden属性は form{display:grid} に負けるため
+          document.getElementById('contact-thanks').hidden = false;
+        }).catch(function () {
+          button.disabled = false;
+          button.textContent = '送信する';
+          alert('送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。');
+        });
+      });
+    </script>
   </div>
 </section>
 

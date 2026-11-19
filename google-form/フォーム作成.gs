@@ -13,6 +13,9 @@
  *   3. 上の関数の選択で「setupSheet」を選んで「実行」（1回だけ。setup は実行しない）
  *   4. 実行ログに出る「管理表のURL」を開く
  *
+ * メールが届かないとき：
+ *   中身を貼り付け直して保存し、関数の選択で「fixMail」を選んで「実行」（許可を求められたら許可する）
+ *
  * 送信されると、お客様には完了メール、フォームの持ち主には通知メールが届きます。
  * 管理表を作ったあとは、問い合わせが管理表に1行ずつ自動で追加されます。
  * ホームページの問い合わせフォーム（docs/index.html）と同じ項目にしています。
@@ -159,7 +162,31 @@ function setupSheet() {
   // 通知メールに管理表のURLを載せるために覚えておく
   PropertiesService.getScriptProperties().setProperty('SHEET_URL', ss.getUrl());
 
+  // 送信時にメールを送る仕組み（トリガー）を、ホームページのフォームにつなぎ直す
+  resetTrigger_(form);
+
   Logger.log('管理表のURL: ' + ss.getUrl());
+}
+
+/**
+ * メールが届かないときに実行する。
+ * 送信時のトリガーをいったん全部消し、ホームページとつながっているフォームに付け直す。
+ */
+function fixMail() {
+  const form = findLiveForm_();
+  if (!form) {
+    throw new Error('ホームページとつながっているフォームが見つかりません。フォームを作ったときと同じGoogleアカウントで実行してください。');
+  }
+  resetTrigger_(form);
+  Logger.log('メール送信の設定をつなぎ直しました。ホームページからもう一度テスト送信してください。');
+  Logger.log('通知メールの送り先: ' + Session.getEffectiveUser().getEmail());
+}
+
+function resetTrigger_(form) {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'onSubmit') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('onSubmit').forForm(form).onFormSubmit().create();
 }
 
 /** フォームが送信されるたびに自動で動く */
@@ -203,6 +230,10 @@ function onSubmit(e) {
     body: 'ホームページのフォームからお問い合わせが届きました。\n\n' + summary +
       (sheetUrl ? '\n\n管理表：' + sheetUrl : ''),
   });
+
+  // 届かないときに「実行数」の画面で確かめられるように記録を残す
+  Logger.log('メール送信済み：お客様 ' + answers['メールアドレス'] + ' ／ お店 ' + owner +
+    '（今日の残り送信可能数 ' + MailApp.getRemainingDailyQuota() + '）');
 }
 
 /** ホームページとつながっているフォームを、Googleドライブの中から探す */
